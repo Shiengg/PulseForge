@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "develop"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "develop"]
 
 jobs:
   build-and-test:
@@ -19,9 +19,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        working-directory: pulseforge-api
+        working-directory: services/user-auth
         run: npm install
 
       - name: Check syntax (Basic Verification)
-        working-directory: pulseforge-api
+        working-directory: services/user-auth
         run: node --check server.js
