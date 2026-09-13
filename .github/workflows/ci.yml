@@ -25,3 +25,12 @@ jobs:
       - name: Check syntax (Basic Verification)
         working-directory: services/user-auth
         run: node --check server.js
+
+      - name: Notify Discord
+        if: always()
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          title: "Node.js CI"
+          nofail: true
