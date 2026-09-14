@@ -6,6 +6,9 @@ up:
 down:
 	docker compose down
 
+stop:
+	docker compose stop
+
 reset:
 	docker compose down -v --remove-orphans
 	docker compose up --build -d
