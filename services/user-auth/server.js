@@ -1,16 +1,9 @@
-const express = require('express');
+require('dotenv').config();
 
-const app = express();
-const port = process.env.PORT || 4001;
+const app = require('./src/app');
 
-app.get('/', (req, res) => {
-  res.send('user-auth service');
-});
+const PORT = process.env.PORT || 4001;
 
-app.get('/api/v1/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
-
-app.listen(port, () => {
-  console.log(`user-auth service đang chạy tại: http://localhost:${port}`);
-});
+app.listen(PORT, () => {
+  console.log(`user-auth service đang chạy tại: http://localhost:${PORT}`);
+})
