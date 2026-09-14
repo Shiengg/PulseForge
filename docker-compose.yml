@@ -10,5 +10,23 @@ services:
 
   user-auth:
     build: ./services/user-auth
+    env_file:
+      - ./services/user-auth/.env
     expose:
       - "4001"
+    depends_on:
+      - user-auth-db
+
+  user-auth-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: user_auth
+      POSTGRES_PASSWORD: user_auth
+      POSTGRES_DB: user_auth
+    volumes:
+      - user_auth_data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+
+volumes:
+  user_auth_data:
