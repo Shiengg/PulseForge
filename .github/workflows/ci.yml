@@ -51,7 +51,7 @@ jobs:
 
       - name: Audit dependencies
         working-directory: services/${{ matrix.service }}
-        run: pnpm audit --audit-level=high
+        run: pnpm audit --audit-level=high --prod
 
       - name: Lint
         working-directory: services/${{ matrix.service }}
