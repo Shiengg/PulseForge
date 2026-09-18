@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.send('user-auth service');
 });
 
-app.use('/api/v1', healhRoutes);
+app.use('/api/v1', healthRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

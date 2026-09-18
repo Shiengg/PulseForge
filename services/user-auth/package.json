@@ -4,11 +4,21 @@
   "description": "User auth service",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "migrate:dev": "DB_HOST=localhost DB_PORT=5400 prisma migrate dev"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.5",
+    "dotenv-expand": "^1000.0.0",
     "express": "^5.2.1",
-    "pg": "^8.13.1",
-    "dotenv": "^16.4.5"
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "prisma": "7.10.0"
   }
 }
