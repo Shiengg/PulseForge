@@ -1,15 +1,7 @@
-const { Pool } = require('pg');
+const { PrismaClient } = require('../../../../packages/prisma-generated');
+const { PrismaPg } = require('@prisma/adapter-pg');
 
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-})
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
-pool.on('error', (err) => {
-    console.error('Unexpected error', err);
-})
-
-module.exports = pool
+module.exports = prisma

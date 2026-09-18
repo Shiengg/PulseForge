@@ -1,4 +1,7 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
+
+dotenvExpand.expand(dotenv.config());
 
 const app = require('./src/app');
 

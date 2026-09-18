@@ -4,7 +4,7 @@ const {responseSuccess} =require('../utils/response')
 
 async function healthCheck(req, res, next) {
     try {
-        await db.query('SELECT 1');
+        await db.$queryRaw`SELECT 1`;
         return responseSuccess(res, {status: 'ok', db: 'up'})
     } catch (error) {
         return next(new AppError(

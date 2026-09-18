@@ -9,7 +9,9 @@ services:
       - user-auth
 
   user-auth:
-    build: ./services/user-auth
+    build:
+      context: .
+      dockerfile: services/user-auth/Dockerfile
     env_file:
       - ./services/user-auth/.env
     expose:
@@ -25,8 +27,8 @@ services:
       POSTGRES_DB: user_auth
     volumes:
       - user_auth_data:/var/lib/postgresql/data
-    expose:
-      - "5432"
+    ports:
+      - "5400:5432"
 
 volumes:
   user_auth_data:
