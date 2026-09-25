@@ -19,7 +19,7 @@ model User {
   full_name String?
   is_active Boolean @default(false)
 
-  refresh_token RefreshToken[]
+  refresh_tokens RefreshToken[]
 
   created_at DateTime @default(now())
   update_at  DateTime @default(now())
@@ -29,17 +29,16 @@ model User {
 }
 
 model RefreshToken {
-  id         String   @id @default(uuid())
+  id         String    @id @default(uuid())
   user_id    String
-  user       User?    @relation(fields: [userId], references: [id])
-  userId     String?
-  token      String
+  user       User      @relation(fields: [user_id], references: [id])
+  token_hash String
   expires_at DateTime
-  revoked_at DateTime
+  revoked_at DateTime?
 
   created_at DateTime @default(now())
 
   @@index([user_id])
-  @@index([token])
+  @@index([token_hash])
   @@map("refresh_tokens")
 }
